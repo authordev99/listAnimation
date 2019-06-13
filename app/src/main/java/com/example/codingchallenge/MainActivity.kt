@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
         super.onCreate(savedInstanceState)
         sessionManager = SessionManager(this)
 
+        supportActionBar!!.title = "Home"
+
         if (!sessionManager.isLoggedIn) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
