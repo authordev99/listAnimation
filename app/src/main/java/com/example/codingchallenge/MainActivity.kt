@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity(),BinderHandler<Any> {
         binding.view = this
         binding.list = userList
 
-
+        getUsers()
     }
 
     fun getUsers()
