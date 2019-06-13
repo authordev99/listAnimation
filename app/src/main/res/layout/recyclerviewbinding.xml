@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.databinding.ObservableArrayList" />
+
+        <variable
+            name="background"
+            type="Boolean" />
+
+        <!-- for margin at the bottom if fabIcon is enabled both in this layout or other parent layouts like viewpager -->
+        <variable
+            name="fabMarginEnable"
+            type="Boolean" />
+
+        <variable
+            name="backgroundColor"
+            type="int" />
+
+
+        <variable
+            name="list"
+            type="ObservableArrayList" />
+
+        <variable
+            name="view"
+            type="com.example.codingchallenge.Binding.BinderHandler" />
+
+        <variable
+            name="onRefresh"
+            type="android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener" />
+
+    </data>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:fadeScrollbars="false"
+            android:fadingEdge="none"
+            android:overScrollMode="never"
+            app:clickHandler="@{view.clickHandler}"
+            app:itemViewBinder="@{view.itemViewBinder}"
+            app:items="@{list}"
+            app:longClickHandler="@{view.longClickHandler}" />
+
+    </RelativeLayout>
+
+
+</layout>

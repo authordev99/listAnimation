@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">CodingChallenge</string>
+    <string name="app.dont_have_account">i don\'t have account yet.&#160;<u>Sign Up</u></string>
+</resources>
