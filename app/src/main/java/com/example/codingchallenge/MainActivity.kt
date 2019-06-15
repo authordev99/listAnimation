@@ -12,7 +12,6 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import com.example.codingchallenge.Binding.BinderHandler
-import com.example.codingchallenge.Model.Address
 import com.example.codingchallenge.Model.Users
 import com.example.codingchallenge.RecyclerviewBinding.adapter.ClickHandler
 import com.example.codingchallenge.RecyclerviewBinding.adapter.LongClickHandler
