@@ -1,7 +1,9 @@
 package com.example.codingchallenge.Utils
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import com.example.codingchallenge.LoginActivity
 import com.example.codingchallenge.Model.UserLogin
 import com.google.gson.Gson
 
@@ -37,6 +39,17 @@ class SessionManager(var context: Context) {
     fun clearSession() {
         editor.clear()
         editor.commit()
+    }
+
+    fun logout()
+    {
+        clearSession()
+
+        context.startActivity(Intent(context,LoginActivity::class.java).apply {
+            addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        })
     }
 
     companion object {
