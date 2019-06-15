@@ -17,7 +17,7 @@ class DetailActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        supportActionBar!!.title = "Detail User"
+        supportActionBar!!.title = getString(R.string.app_detail_user)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
         users = Gson().fromJson(intent.extras!!.getString(MainActivity.PARAM_DETAIL_USERS), Users::class.java)

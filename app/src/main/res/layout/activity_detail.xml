@@ -55,7 +55,7 @@
             android:layout_width="match_parent"
             android:background="#DBDADA"
             android:layout_margin="5dp"
-            android:layout_height="2dp"/>
+            android:layout_height="1dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -85,7 +85,7 @@
         <View
             android:layout_width="match_parent"
             android:background="#DBDADA"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_margin="10dp"/>
 
         <LinearLayout
@@ -116,7 +116,7 @@
             android:layout_width="match_parent"
             android:background="#DBDADA"
             android:layout_margin="10dp"
-            android:layout_height="2dp"/>
+            android:layout_height="1dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -146,7 +146,7 @@
             android:layout_width="match_parent"
             android:background="#DBDADA"
             android:layout_margin="10dp"
-            android:layout_height="2dp"/>
+            android:layout_height="1dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"

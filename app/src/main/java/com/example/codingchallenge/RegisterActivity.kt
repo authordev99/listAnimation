@@ -21,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sqliteHelper = SqliteHelper(this)
-        supportActionBar!!.title = "Sign Up"
+        supportActionBar!!.title = getString(R.string.app_sign_up)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
     }
 
@@ -32,21 +32,21 @@ class RegisterActivity : AppCompatActivity() {
         confirmPassword = binding.confirmPassword.text.toString()
 
         if (!ValidationUtils.isEmailValid(email)) {
-            binding.emailSignUp.error = "Please enter valid email"
+            binding.emailSignUp.error = getString(R.string.app_valid_email)
             return
         } else {
             binding.emailSignUp.error = null
         }
 
         if (!ValidationUtils.isPasswordValid(password)) {
-            binding.passwordSignUp.error = "Password shall be 8 characters and above in length, contain mixed case, alphanumeric and special characters."
+            binding.passwordSignUp.error = getString(R.string.app_valid_password)
             return
         } else {
             binding.passwordSignUp.error = null
         }
 
         if (!password.equals(confirmPassword, ignoreCase = true)) {
-            binding.confirmPasswordSignUp.error = "Password should be same"
+            binding.confirmPasswordSignUp.error = getString(R.string.app_confirm_password)
             return
         } else {
             binding.confirmPasswordSignUp.error = null
@@ -54,10 +54,10 @@ class RegisterActivity : AppCompatActivity() {
 
         if (!sqliteHelper.isEmailExists(email)) {
             sqliteHelper.addUser(UserLogin(email, password))
-            Snackbar.make(view, "User created successfully! Please Login ", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, getString(R.string.app_success_register), Snackbar.LENGTH_SHORT).show()
             finish()
         } else {
-            Snackbar.make(view, "User already exists with same email", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(view, getString(R.string.app_confirm_email), Snackbar.LENGTH_SHORT).show()
         }
     }
 }

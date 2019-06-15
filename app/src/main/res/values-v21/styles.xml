@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AppThemePopUpCustomStyle" parent="android:Widget.Material.PopupMenu">
+        <item name="android:itemBackground">@android:color/white</item>
+        <item name="android:clickable">false</item>
+        <item name="android:popupElevation">4dp</item>
+    </style>
+</resources>

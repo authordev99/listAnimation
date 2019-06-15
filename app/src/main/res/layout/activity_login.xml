@@ -38,6 +38,7 @@
                     android:id="@+id/email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:singleLine="true"
                     android:hint="Email" />
 
             </android.support.design.widget.TextInputLayout>
@@ -58,9 +59,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:singleLine="true"
                     android:hint="Password" />
 
             </android.support.design.widget.TextInputLayout>
+
+            <Spinner
+                android:id="@+id/spCountry"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="15dp"
+                android:entries="@array/country_arrays"
+                android:prompt="@string/country_prompt"
+                />
 
             <Button
                 android:layout_width="match_parent"

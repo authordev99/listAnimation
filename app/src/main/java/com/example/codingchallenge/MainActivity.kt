@@ -6,6 +6,11 @@ import android.databinding.ObservableArrayList
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
+import android.view.ContextThemeWrapper
+import android.view.Menu
+import android.view.MenuItem
+import android.view.View
+import android.widget.PopupMenu
 import com.example.codingchallenge.Binding.BinderHandler
 import com.example.codingchallenge.Model.Address
 import com.example.codingchallenge.Model.Users
@@ -33,7 +38,7 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
         super.onCreate(savedInstanceState)
         sessionManager = SessionManager(this)
 
-        supportActionBar!!.title = "Home"
+        supportActionBar!!.title = getString(R.string.app_home)
 
         if (!sessionManager.isLoggedIn) {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -88,9 +93,35 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
         return ItemBinderBase<Any>(BR.users, R.layout.list_item_users)
     }
 
-    companion object{
+    companion object {
         const val PARAM_DETAIL_USERS = "detail_users"
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+        menuInflater.inflate(R.menu.menu_more, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        val id = item!!.itemId
+         val menuItemView = findViewById<View>(R.id.action_more)
+        if (id == R.id.action_more) {
+            val wrapper = ContextThemeWrapper(this, R.style.AppThemePopUpCustomStyle)
+            val popupMenu = PopupMenu(wrapper, menuItemView)
+            //add list
+            popupMenu.inflate(R.menu.menu_logout)
+            val menuLogout = popupMenu.menu.findItem(R.id.action_logout)
+            menuLogout.setOnMenuItemClickListener {
+                sessionManager.logout()
+                return@setOnMenuItemClickListener false
+            }
+
+            popupMenu.show()
+
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
 }
