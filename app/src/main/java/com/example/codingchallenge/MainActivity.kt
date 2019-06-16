@@ -1,5 +1,6 @@
 package com.example.codingchallenge
 
+import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
@@ -17,6 +18,8 @@ import com.example.codingchallenge.RecyclerviewBinding.adapter.ClickHandler
 import com.example.codingchallenge.RecyclerviewBinding.adapter.LongClickHandler
 import com.example.codingchallenge.RecyclerviewBinding.adapter.binder.ItemBinder
 import com.example.codingchallenge.RecyclerviewBinding.adapter.binder.ItemBinderBase
+import com.example.codingchallenge.Utils.BindingPresenter
+import com.example.codingchallenge.Utils.IntentUtils
 import com.example.codingchallenge.Utils.SessionManager
 import com.example.codingchallenge.databinding.RecyclerviewbindingBinding
 import com.google.gson.Gson
@@ -48,6 +51,7 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
         binding = DataBindingUtil.setContentView(this, R.layout.recyclerviewbinding)
         binding.view = this
         binding.list = userList
+        binding.presenter = BindingPresenter(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         getUsers()

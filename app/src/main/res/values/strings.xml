@@ -1,25 +1,19 @@
 <resources>
     <string name="app_name">CodingChallenge</string>
     <string name="app.dont_have_account">i don\'t have account yet.&#160;<u>Sign Up</u></string>
-    <string name="country_prompt">Choose a country</string>
-    <string name="app.failed_login">Failed to log in , please try again</string>
+    <string name="app.failed_login">Username or password is incorrect</string>
     <string name="app.valid_email">Please enter valid email</string>
     <string name="app.valid_password">Password shall be 8 characters and above in length, contain mixed case, alphanumeric and special characters.</string>
-    <string name="app.confirm_password">Password should be same</string>
+    <string name="app.confirm_password_msg">Password should be same</string>
     <string name="app.success_register">User created successfully! Please Login </string>
     <string name="app.confirm_email">User already exists with same email</string>
     <string name="app.sign_up">Sign Up</string>
     <string name="app.home">Home</string>
     <string name="app.detail_user">Detail User</string>
-
-    <string-array name="country_arrays">
-        <item>Malaysia</item>
-        <item>United States</item>
-        <item>Indonesia</item>
-        <item>France</item>
-        <item>Italy</item>
-        <item>Singapore</item>
-        <item>New Zealand</item>
-        <item>India</item>
-    </string-array>
+    <string name="app.confirm_password">Confirm Password</string>
+    <string name="app.email">Email</string>
+    <string name="app.password">Password</string>
+    <string name="app.register">Register</string>
+    <string name="app.welcome">Welcome</string>
+    <string name="app.login">Login</string>
 </resources>

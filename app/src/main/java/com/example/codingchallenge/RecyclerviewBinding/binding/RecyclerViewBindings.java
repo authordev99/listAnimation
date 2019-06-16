@@ -9,6 +9,7 @@ import com.example.codingchallenge.RecyclerviewBinding.adapter.BindingRecyclerVi
 import com.example.codingchallenge.RecyclerviewBinding.adapter.ClickHandler;
 import com.example.codingchallenge.RecyclerviewBinding.adapter.LongClickHandler;
 import com.example.codingchallenge.RecyclerviewBinding.adapter.binder.ItemBinder;
+import com.example.codingchallenge.Utils.BindingPresenter;
 
 import java.util.Collection;
 
@@ -53,6 +54,17 @@ public class RecyclerViewBindings {
             adapter.setClickHandler(handler);
         } else {
             recyclerView.setTag(KEY_CLICK_HANDLER, handler);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    @BindingAdapter("itemClickPresenter")
+    public static <T> void setPresenter(RecyclerView recyclerView, BindingPresenter presenter) {
+        BindingRecyclerViewAdapter<T> adapter = (BindingRecyclerViewAdapter<T>) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.setItemClickPresenter(presenter);
+        } else {
+            recyclerView.setTag(KEY_ITEM_CLICK_PRESENTER, presenter);
         }
     }
 

@@ -10,16 +10,6 @@
             name="background"
             type="Boolean" />
 
-        <!-- for margin at the bottom if fabIcon is enabled both in this layout or other parent layouts like viewpager -->
-        <variable
-            name="fabMarginEnable"
-            type="Boolean" />
-
-        <variable
-            name="backgroundColor"
-            type="int" />
-
-
         <variable
             name="list"
             type="ObservableArrayList" />
@@ -29,8 +19,8 @@
             type="com.example.codingchallenge.Binding.BinderHandler" />
 
         <variable
-            name="onRefresh"
-            type="android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener" />
+            name="presenter"
+            type="com.example.codingchallenge.Utils.BindingPresenter" />
 
     </data>
 
@@ -50,6 +40,7 @@
             android:overScrollMode="never"
             app:clickHandler="@{view.clickHandler}"
             app:itemViewBinder="@{view.itemViewBinder}"
+            app:itemClickPresenter="@{presenter}"
             app:items="@{list}"
             app:longClickHandler="@{view.longClickHandler}" />
 

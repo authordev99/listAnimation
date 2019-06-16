@@ -1,8 +1,8 @@
 package com.example.codingchallenge.Utils
 
-import android.database.sqlite.SQLiteDatabase
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.codingchallenge.Model.UserLogin
 
@@ -31,6 +31,9 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
         //Put password in  @values
         values.put(KEY_PASSWORD, user.password)
+
+        // insert row
+        db.insert(TABLE_USERS, null, values)
     }
 
     fun authenticate(user: UserLogin): UserLogin? {

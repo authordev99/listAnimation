@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.codingchallenge.BR;
 import com.example.codingchallenge.RecyclerviewBinding.adapter.binder.ItemBinder;
+import com.example.codingchallenge.Utils.BindingPresenter;
 
 
 import java.lang.ref.WeakReference;
@@ -20,6 +22,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
     private static final int ITEM_MODEL = -124;
     private final WeakReferenceOnListChangedCallback onListChangedCallback;
     private final ItemBinder<T> itemBinder;
+    private BindingPresenter itemClickPresenter;
     private ObservableList<T> items;
     private LayoutInflater inflater;
     private ClickHandler<T> clickHandler;
@@ -92,6 +95,7 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
         final T item = items.get(position);
         viewHolder.binding.setVariable(itemBinder.getBindingVariable(item), item);
+        viewHolder.binding.setVariable(BR.presenter, itemClickPresenter);
         viewHolder.binding.getRoot().setTag(ITEM_MODEL, item);
         viewHolder.binding.getRoot().setOnClickListener(this);
         viewHolder.binding.getRoot().setOnLongClickListener(this);
@@ -184,6 +188,9 @@ public class BindingRecyclerViewAdapter<T> extends RecyclerView.Adapter<BindingR
         }
     }
 
+    public void setItemClickPresenter(BindingPresenter presenter) {
+        this.itemClickPresenter = presenter;
+    }
 
     public void setClickHandler(com.example.codingchallenge.RecyclerviewBinding.adapter.ClickHandler<T> clickHandler) {
         this.clickHandler = clickHandler;

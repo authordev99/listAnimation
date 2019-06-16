@@ -1,7 +1,7 @@
 package com.example.codingchallenge
 
+import android.app.Activity
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
@@ -10,7 +10,7 @@ import com.example.codingchallenge.Utils.SqliteHelper
 import com.example.codingchallenge.Utils.ValidationUtils
 import com.example.codingchallenge.databinding.ActivityRegisterBinding
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : Activity() {
     lateinit var binding: ActivityRegisterBinding
     lateinit var email: String
     lateinit var password: String
@@ -21,7 +21,7 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sqliteHelper = SqliteHelper(this)
-        supportActionBar!!.title = getString(R.string.app_sign_up)
+       // supportActionBar!!.title = getString(R.string.app_sign_up)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
     }
 
