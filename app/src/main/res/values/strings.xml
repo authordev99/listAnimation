@@ -18,4 +18,5 @@
     <string name="app.register">Register</string>
     <string name="app.welcome">Welcome</string>
     <string name="app.login">Login</string>
+    <string name="app.prompt_message">Select your country</string>
 </resources>
