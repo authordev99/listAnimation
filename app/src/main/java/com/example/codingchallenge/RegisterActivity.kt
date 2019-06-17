@@ -1,7 +1,7 @@
 package com.example.codingchallenge
 
+import android.app.Activity
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.view.View
@@ -10,8 +10,9 @@ import com.example.codingchallenge.Utils.SqliteHelper
 import com.example.codingchallenge.Utils.ValidationUtils
 import com.example.codingchallenge.databinding.ActivityRegisterBinding
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : Activity() {
     lateinit var binding: ActivityRegisterBinding
+    lateinit var username: String
     lateinit var email: String
     lateinit var password: String
     lateinit var confirmPassword: String
@@ -21,15 +22,23 @@ class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         sqliteHelper = SqliteHelper(this)
-        supportActionBar!!.title = getString(R.string.app_sign_up)
+       // supportActionBar!!.title = getString(R.string.app_sign_up)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_register)
     }
 
     fun signUp(view: View) {
 
+        username = binding.username.text.toString()
         email = binding.email.text.toString()
         password = binding.password.text.toString()
         confirmPassword = binding.confirmPassword.text.toString()
+
+        if (username.length < 8) {
+            binding.usernameSignUp.error = getString(R.string.app_valid_username)
+            return
+        } else {
+            binding.usernameSignUp.error = null
+        }
 
         if (!ValidationUtils.isEmailValid(email)) {
             binding.emailSignUp.error = getString(R.string.app_valid_email)
@@ -53,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         if (!sqliteHelper.isEmailExists(email)) {
-            sqliteHelper.addUser(UserLogin(email, password))
+            sqliteHelper.addUser(UserLogin(username, password,email))
             Snackbar.make(view, getString(R.string.app_success_register), Snackbar.LENGTH_SHORT).show()
             finish()
         } else {

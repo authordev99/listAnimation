@@ -7,6 +7,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
         tools:context=".RegisterActivity">
 
         <LinearLayout
@@ -21,9 +22,29 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Register"
-                android:textSize="32sp" />
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:text="@string/app.register"
+                android:textSize="@dimen/font_size_xlarge" />
 
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                app:hintAnimationEnabled="true"
+                android:id="@+id/usernameSignUp"
+                android:textColorHint="@android:color/white"
+                app:hintEnabled="true">
+
+                <android.support.design.widget.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:singleLine="true"
+                    android:textColor="@android:color/white"
+                    android:hint="@string/app.username" />
+
+            </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
@@ -31,7 +52,7 @@
                 android:layout_marginTop="15dp"
                 app:hintAnimationEnabled="true"
                 android:id="@+id/emailSignUp"
-                android:textColorHint="@color/colorPrimary"
+                android:textColorHint="@android:color/white"
                 app:hintEnabled="true">
 
                 <android.support.design.widget.TextInputEditText
@@ -39,7 +60,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:singleLine="true"
-                    android:hint="Email" />
+                    android:textColor="@android:color/white"
+                    android:hint="@string/app.email" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -50,7 +72,8 @@
                 android:layout_marginTop="15dp"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
+                android:textColorHint="@android:color/white"
+                app:passwordToggleTint="@android:color/white"
                 android:id="@+id/passwordSignUp"
                 app:passwordToggleEnabled="true">
 
@@ -59,8 +82,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:textColor="@android:color/white"
                     android:singleLine="true"
-                    android:hint="Password" />
+                    android:hint="@string/app.password" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -70,7 +94,8 @@
                 android:layout_marginTop="15dp"
                 app:hintAnimationEnabled="true"
                 app:hintEnabled="true"
-                android:textColorHint="@color/colorPrimary"
+                android:textColorHint="@android:color/white"
+                app:passwordToggleTint="@android:color/white"
                 android:id="@+id/confirmPasswordSignUp"
                 app:passwordToggleEnabled="true">
 
@@ -79,8 +104,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
+                    android:textColor="@android:color/white"
                     android:singleLine="true"
-                    android:hint="Confirm Password" />
+                    android:hint="@string/app.confirm_password" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -89,9 +115,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:onClick="signUp"
-                android:backgroundTint="@color/colorPrimary"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:textColor="#FFFFFF"
-                android:text="Sign Up" />
+                android:text="@string/app.sign_up" />
 
 
 

@@ -1,13 +1,14 @@
 package com.example.codingchallenge
 
 import android.databinding.DataBindingUtil
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
+import android.view.MenuItem
 import com.example.codingchallenge.Model.Users
+import com.example.codingchallenge.Utils.BindingPresenter
+import com.example.codingchallenge.Utils.IntentUtils
 import com.example.codingchallenge.databinding.ActivityDetailBinding
 import com.google.gson.Gson
-import android.content.Intent
-import android.net.Uri
 
 
 class DetailActivity : AppCompatActivity() {
@@ -24,10 +25,26 @@ class DetailActivity : AppCompatActivity() {
         binding.users = users
 
         binding.location.setOnClickListener {
-            val mapUri = "http://maps.google.com/maps?q=loc:${users.address!!.geo!!.lat},${users.address!!.geo!!.lng} ("+ users.address!!.street+")"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(mapUri))
-            intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity")
-            startActivity(intent)
+            BindingPresenter(this).openMap(users.address!!.geo!!.lat,users.address!!.geo!!.lng,users.address!!.street)
         }
+
+        binding.phoneNumber.setOnClickListener {
+            IntentUtils(this).openCall(users.phone)
+        }
+
+        binding.urlWebsite.setOnClickListener {
+            IntentUtils(this).openURL(users.website)
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+
+        val id = item!!.itemId
+        if (id == android.R.id.home) {
+            onBackPressed()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
     }
 }

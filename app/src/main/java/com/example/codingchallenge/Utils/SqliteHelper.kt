@@ -1,8 +1,8 @@
 package com.example.codingchallenge.Utils
 
-import android.database.sqlite.SQLiteDatabase
 import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import com.example.codingchallenge.Model.UserLogin
 
@@ -12,7 +12,6 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     override fun onCreate(sqLiteDatabase: SQLiteDatabase) {
         //Create Table when oncreate gets called
         sqLiteDatabase.execSQL(SQL_TABLE_USERS)
-
     }
 
     override fun onUpgrade(sqLiteDatabase: SQLiteDatabase, i: Int, i1: Int) {
@@ -20,7 +19,6 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         sqLiteDatabase.execSQL(" DROP TABLE IF EXISTS $TABLE_USERS")
     }
 
-    //using this method we can add users to user table
     fun addUser(user: UserLogin) {
 
         //get writable database
@@ -28,30 +26,34 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
         //create content values to insert
         val values = ContentValues()
-        //Put email in  @values
-        values.put(KEY_EMAIL, user.email)
+
+        //Put username in  @values
+        values.put(KEY_USERNAME, user.username)
 
         //Put password in  @values
         values.put(KEY_PASSWORD, user.password)
 
+        //Put email in  @values
+        values.put(KEY_EMAIL, user.email)
+
         // insert row
-        val todo_id = db.insert(TABLE_USERS, null, values)
+        db.insert(TABLE_USERS, null, values)
     }
 
     fun authenticate(user: UserLogin): UserLogin? {
         val db = this.readableDatabase
         val cursor = db.query(TABLE_USERS, // Selecting Table
-                arrayOf(KEY_EMAIL, KEY_PASSWORD), //Selecting columns want to query
-                "$KEY_EMAIL=?",
-                arrayOf(user.email), null, null, null)//Where clause
-
+                arrayOf(KEY_USERNAME, KEY_PASSWORD, KEY_EMAIL), //Selecting columns want to query
+                "$KEY_USERNAME=?",
+                arrayOf(user.username), null, null, null)//Where clause
         if (cursor != null && cursor.moveToFirst() && cursor.count > 0) {
             //if cursor has value then in user database there is user associated with this given email
-            val user1 = UserLogin(cursor.getString(0), cursor.getString(1))
-
+            val registeredUser = UserLogin(cursor.getString(0), cursor.getString(1),cursor.getString(2))
+            println("registered username = ${registeredUser.username}")
+            println("registered password = ${registeredUser.password}")
             //Match both passwords check they are same or not
-            if (user.password.equals(user1.password,ignoreCase = true)) {
-                return user1
+            if (user.password.equals(registeredUser.password,ignoreCase = true)) {
+                return registeredUser
             }
         }
 
@@ -62,7 +64,7 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     fun isEmailExists(email: String): Boolean {
         val db = this.readableDatabase
         val cursor = db.query(TABLE_USERS, // Selecting Table
-                arrayOf(KEY_EMAIL, KEY_PASSWORD), //Selecting columns want to query
+                arrayOf(KEY_USERNAME,KEY_PASSWORD,KEY_EMAIL), //Selecting columns want to query
                 "$KEY_EMAIL=?",
                 arrayOf(email), null, null, null)//Where clause
 
@@ -73,24 +75,17 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
     companion object {
 
-        //DATABASE NAME
-        val DATABASE_NAME = "login"
-
-        //DATABASE VERSION
-        val DATABASE_VERSION = 1
-
-        //TABLE NAME
-        val TABLE_USERS = "users"
-
-        //COLUMN email
-        val KEY_EMAIL = "email"
-
-        //COLUMN password
-        val KEY_PASSWORD = "password"
+        const val DATABASE_NAME = "challenge"
+        const val DATABASE_VERSION = 1
+        const val TABLE_USERS = "users"
+        const val KEY_USERNAME = "username"
+        const val KEY_EMAIL = "email"
+        const val KEY_PASSWORD = "password"
 
         //SQL for creating users table
-        val SQL_TABLE_USERS = (" CREATE TABLE " + TABLE_USERS
+        const val SQL_TABLE_USERS = (" CREATE TABLE " + TABLE_USERS
                 + " ( "
+                + KEY_USERNAME + " TEXT, "
                 + KEY_EMAIL + " TEXT, "
                 + KEY_PASSWORD + " TEXT"
                 + " ) ")

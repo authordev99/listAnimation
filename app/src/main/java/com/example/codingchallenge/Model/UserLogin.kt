@@ -2,12 +2,14 @@ package com.example.codingchallenge.Model
 
 class UserLogin {
 
-    constructor( email: String, password: String) {
-        this.email = email
+    constructor(username: String, password: String, email: String = "") {
+        this.username = username
         this.password = password
+        this.email = email
     }
 
-    var email: String = ""
+    var username: String = ""
     var password: String = ""
+    var email: String = ""
 
 }

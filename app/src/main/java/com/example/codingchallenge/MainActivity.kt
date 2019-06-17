@@ -1,5 +1,6 @@
 package com.example.codingchallenge
 
+import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.databinding.ObservableArrayList
@@ -11,13 +12,15 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import com.example.codingchallenge.Binding.BinderHandler
-import com.example.codingchallenge.Model.Address
 import com.example.codingchallenge.Model.Users
 import com.example.codingchallenge.RecyclerviewBinding.adapter.ClickHandler
 import com.example.codingchallenge.RecyclerviewBinding.adapter.LongClickHandler
 import com.example.codingchallenge.RecyclerviewBinding.adapter.binder.ItemBinder
 import com.example.codingchallenge.RecyclerviewBinding.adapter.binder.ItemBinderBase
+import com.example.codingchallenge.Utils.BindingPresenter
+import com.example.codingchallenge.Utils.IntentUtils
 import com.example.codingchallenge.Utils.SessionManager
 import com.example.codingchallenge.databinding.RecyclerviewbindingBinding
 import com.google.gson.Gson
@@ -49,6 +52,7 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
         binding = DataBindingUtil.setContentView(this, R.layout.recyclerviewbinding)
         binding.view = this
         binding.list = userList
+        binding.presenter = BindingPresenter(this)
         binding.recyclerView.layoutManager = LinearLayoutManager(this)
 
         getUsers()
@@ -65,13 +69,18 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
 
         getUsers.enqueue(object : Callback<List<Users>> {
             override fun onFailure(call: Call<List<Users>>, t: Throwable) {
-                println("message error = " + t.message)
+                //can create custom error message handling to show meaningfull message to client
+                Toast.makeText(this@MainActivity, "Unavailable", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
-                val users: List<Users> = response.body()!!
-                userList.clear()
-                userList.addAll(users)
+                if (response.isSuccessful) {
+                    val users: List<Users> = response.body()!!
+                    println("error = " + response.errorBody())
+                    userList.clear()
+                    userList.addAll(users)
+                }
+
             }
 
         })
@@ -106,7 +115,7 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         val id = item!!.itemId
-         val menuItemView = findViewById<View>(R.id.action_more)
+        val menuItemView = findViewById<View>(R.id.action_more)
         if (id == R.id.action_more) {
             val wrapper = ContextThemeWrapper(this, R.style.AppThemePopUpCustomStyle)
             val popupMenu = PopupMenu(wrapper, menuItemView)

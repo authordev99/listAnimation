@@ -13,14 +13,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="@dimen/content_margin_small"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="5dp"
-            android:orientation="horizontal">
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/content_margin_normal">
 
             <ImageView
                 android:layout_width="70dp"
@@ -30,16 +31,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="@dimen/content_margin_xsmall"
                 android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@{users.name}"
-                    android:textSize="20sp"
+                    android:textSize="@dimen/font_size_xmedium"
                     tools:text="Name" />
 
                 <TextView
@@ -53,125 +52,128 @@
 
         <View
             android:layout_width="match_parent"
-            android:background="#DBDADA"
+            android:layout_height="1dp"
             android:layout_margin="5dp"
-            android:layout_height="1dp"/>
+            android:background="#DBDADA" />
 
         <LinearLayout
+            android:id="@+id/location"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:id="@+id/location"
-            android:orientation="horizontal">
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/content_margin_normal">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_location" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/content_margin_xsmall"
                 android:text="@{users.address.street+','+users.address.city+' '+users.address.suite+','+users.address.zipcode}"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_size_xnormal"
                 tools:text="Address" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:background="#DBDADA"
             android:layout_height="1dp"
-            android:layout_margin="10dp"/>
+            android:layout_margin="5dp"
+            android:background="#DBDADA" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:orientation="horizontal">
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/content_margin_normal">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_phone" />
 
 
             <TextView
+                android:id="@+id/phoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/content_margin_xsmall"
+                android:layout_weight="1"
                 android:text="@{users.phone}"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_size_xnormal"
                 tools:text="Phone" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:background="#DBDADA"
-            android:layout_margin="10dp"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="#DBDADA" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:orientation="horizontal">
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/content_margin_normal">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_website" />
 
 
             <TextView
+                android:id="@+id/urlWebsite"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/content_margin_xsmall"
                 android:text="@{users.website}"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_size_xnormal"
                 tools:text="Website" />
 
         </LinearLayout>
 
         <View
             android:layout_width="match_parent"
-            android:background="#DBDADA"
-            android:layout_margin="10dp"
-            android:layout_height="1dp"/>
+            android:layout_height="1dp"
+            android:layout_margin="5dp"
+            android:background="#DBDADA" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginLeft="15dp"
-            android:orientation="horizontal">
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="@dimen/content_margin_normal">
 
             <ImageView
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/ic_office" />
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/content_margin_xsmall"
                 android:text="@{users.company.name}"
-                android:layout_marginTop="15dp"
-                android:layout_marginLeft="12dp"
-                android:textSize="16sp"
+                android:textSize="@dimen/font_size_xnormal"
                 tools:text="Office" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
