@@ -12,6 +12,7 @@ import com.example.codingchallenge.databinding.ActivityRegisterBinding
 
 class RegisterActivity : Activity() {
     lateinit var binding: ActivityRegisterBinding
+    lateinit var username: String
     lateinit var email: String
     lateinit var password: String
     lateinit var confirmPassword: String
@@ -27,9 +28,17 @@ class RegisterActivity : Activity() {
 
     fun signUp(view: View) {
 
+        username = binding.username.text.toString()
         email = binding.email.text.toString()
         password = binding.password.text.toString()
         confirmPassword = binding.confirmPassword.text.toString()
+
+        if (username.length < 8) {
+            binding.usernameSignUp.error = getString(R.string.app_valid_username)
+            return
+        } else {
+            binding.usernameSignUp.error = null
+        }
 
         if (!ValidationUtils.isEmailValid(email)) {
             binding.emailSignUp.error = getString(R.string.app_valid_email)
@@ -53,7 +62,7 @@ class RegisterActivity : Activity() {
         }
 
         if (!sqliteHelper.isEmailExists(email)) {
-            sqliteHelper.addUser(UserLogin(email, password))
+            sqliteHelper.addUser(UserLogin(username, password,email))
             Snackbar.make(view, getString(R.string.app_success_register), Snackbar.LENGTH_SHORT).show()
             finish()
         } else {

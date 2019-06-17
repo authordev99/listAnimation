@@ -16,7 +16,7 @@ class IntentUtils(private val context: Context) {
             callIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             context.startActivity(callIntent)
         } else {
-            Toast.makeText(context, "Phone Number Unavalaible", Toast.LENGTH_SHORT)
+            Toast.makeText(context, "Phone Number Unavalaible", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -41,7 +41,7 @@ class IntentUtils(private val context: Context) {
             }
 
         } else {
-            Toast.makeText(context, "Unavalaible", Toast.LENGTH_SHORT)
+            Toast.makeText(context, "Unavalaible", Toast.LENGTH_SHORT).show()
         }
 
     }

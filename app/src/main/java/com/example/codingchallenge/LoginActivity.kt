@@ -20,7 +20,7 @@ import kotlin.collections.ArrayList
 class LoginActivity : Activity() {
 
     lateinit var binding: ActivityLoginBinding
-    lateinit var email: String
+    lateinit var username: String
     lateinit var password: String
     lateinit var sqliteHelper: SqliteHelper
 
@@ -63,11 +63,11 @@ class LoginActivity : Activity() {
     fun login(view: View) {
 
         binding.loading.visibility = View.VISIBLE
-        email = binding.email.text.toString()
+        username = binding.username.text.toString()
         password = binding.password.text.toString()
 
 
-        val currentUser = sqliteHelper.authenticate(UserLogin(email, password))
+        val currentUser = sqliteHelper.authenticate(UserLogin(username, password,""))
         print("currentUser = $currentUser")
         if (currentUser != null) {
             binding.loading.addAnimatorListener(object : Animator.AnimatorListener {

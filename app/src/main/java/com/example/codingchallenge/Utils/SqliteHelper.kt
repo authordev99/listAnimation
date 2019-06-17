@@ -26,11 +26,15 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
 
         //create content values to insert
         val values = ContentValues()
-        //Put email in  @values
-        values.put(KEY_EMAIL, user.email)
+
+        //Put username in  @values
+        values.put(KEY_USERNAME, user.username)
 
         //Put password in  @values
         values.put(KEY_PASSWORD, user.password)
+
+        //Put email in  @values
+        values.put(KEY_EMAIL, user.email)
 
         // insert row
         db.insert(TABLE_USERS, null, values)
@@ -39,14 +43,14 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     fun authenticate(user: UserLogin): UserLogin? {
         val db = this.readableDatabase
         val cursor = db.query(TABLE_USERS, // Selecting Table
-                arrayOf(KEY_EMAIL, KEY_PASSWORD), //Selecting columns want to query
-                "$KEY_EMAIL=?",
-                arrayOf(user.email), null, null, null)//Where clause
-
+                arrayOf(KEY_USERNAME, KEY_PASSWORD, KEY_EMAIL), //Selecting columns want to query
+                "$KEY_USERNAME=?",
+                arrayOf(user.username), null, null, null)//Where clause
         if (cursor != null && cursor.moveToFirst() && cursor.count > 0) {
             //if cursor has value then in user database there is user associated with this given email
-            val registeredUser = UserLogin(cursor.getString(0), cursor.getString(1))
-
+            val registeredUser = UserLogin(cursor.getString(0), cursor.getString(1),cursor.getString(2))
+            println("registered username = ${registeredUser.username}")
+            println("registered password = ${registeredUser.password}")
             //Match both passwords check they are same or not
             if (user.password.equals(registeredUser.password,ignoreCase = true)) {
                 return registeredUser
@@ -60,7 +64,7 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
     fun isEmailExists(email: String): Boolean {
         val db = this.readableDatabase
         val cursor = db.query(TABLE_USERS, // Selecting Table
-                arrayOf(KEY_EMAIL, KEY_PASSWORD), //Selecting columns want to query
+                arrayOf(KEY_USERNAME,KEY_PASSWORD,KEY_EMAIL), //Selecting columns want to query
                 "$KEY_EMAIL=?",
                 arrayOf(email), null, null, null)//Where clause
 
@@ -74,12 +78,14 @@ class SqliteHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, 
         const val DATABASE_NAME = "challenge"
         const val DATABASE_VERSION = 1
         const val TABLE_USERS = "users"
+        const val KEY_USERNAME = "username"
         const val KEY_EMAIL = "email"
         const val KEY_PASSWORD = "password"
 
         //SQL for creating users table
         const val SQL_TABLE_USERS = (" CREATE TABLE " + TABLE_USERS
                 + " ( "
+                + KEY_USERNAME + " TEXT, "
                 + KEY_EMAIL + " TEXT, "
                 + KEY_PASSWORD + " TEXT"
                 + " ) ")

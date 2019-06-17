@@ -4,6 +4,7 @@
     <string name="app.failed_login">Username or password is incorrect</string>
     <string name="app.valid_email">Please enter valid email</string>
     <string name="app.valid_password">Password shall be 8 characters and above in length, contain mixed case, alphanumeric and special characters.</string>
+    <string name="app.valid_username">Please input at least 8 character</string>
     <string name="app.confirm_password_msg">Password should be same</string>
     <string name="app.success_register">User created successfully! Please Login </string>
     <string name="app.confirm_email">User already exists with same email</string>
@@ -12,6 +13,7 @@
     <string name="app.detail_user">Detail User</string>
     <string name="app.confirm_password">Confirm Password</string>
     <string name="app.email">Email</string>
+    <string name="app.username">Username</string>
     <string name="app.password">Password</string>
     <string name="app.register">Register</string>
     <string name="app.welcome">Welcome</string>

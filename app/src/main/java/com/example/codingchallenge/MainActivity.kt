@@ -12,6 +12,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
+import android.widget.Toast
 import com.example.codingchallenge.Binding.BinderHandler
 import com.example.codingchallenge.Model.Users
 import com.example.codingchallenge.RecyclerviewBinding.adapter.ClickHandler
@@ -68,13 +69,18 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
 
         getUsers.enqueue(object : Callback<List<Users>> {
             override fun onFailure(call: Call<List<Users>>, t: Throwable) {
-                println("message error = " + t.message)
+                //can create custom error message handling to show meaningfull message to client
+                Toast.makeText(this@MainActivity, "Unavailable", Toast.LENGTH_SHORT).show()
             }
 
             override fun onResponse(call: Call<List<Users>>, response: Response<List<Users>>) {
-                val users: List<Users> = response.body()!!
-                userList.clear()
-                userList.addAll(users)
+                if (response.isSuccessful) {
+                    val users: List<Users> = response.body()!!
+                    println("error = " + response.errorBody())
+                    userList.clear()
+                    userList.addAll(users)
+                }
+
             }
 
         })
@@ -109,7 +115,7 @@ class MainActivity : AppCompatActivity(), BinderHandler<Any> {
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
 
         val id = item!!.itemId
-         val menuItemView = findViewById<View>(R.id.action_more)
+        val menuItemView = findViewById<View>(R.id.action_more)
         if (id == R.id.action_more) {
             val wrapper = ContextThemeWrapper(this, R.style.AppThemePopUpCustomStyle)
             val popupMenu = PopupMenu(wrapper, menuItemView)
